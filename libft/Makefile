@@ -25,7 +25,6 @@ all: $(NAME)
 
 $(NAME): $(OBJ) $(HEADER)
 	@ar rvc $(NAME) $(OBJ)
-	@ranlib $(NAME)
 
 %.o: %.c
 	@gcc -c $(CFLAGS) -o $@ $<
