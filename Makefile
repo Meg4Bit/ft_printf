@@ -3,17 +3,19 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: student <marvin@42.fr>                     +#+  +:+       +#+         #
+#    By: ametapod <pe4enko111@rambler.ru>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2020/04/30 22:44:10 by student           #+#    #+#              #
-#    Updated: 2020/05/12 22:03:13 by student          ###   ########.fr        #
+#    Created: 2020/06/09 18:18:13 by ametapod          #+#    #+#              #
+#    Updated: 2020/06/09 18:18:13 by ametapod         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libftprintf.a
+LIB = libft
+HEADER = ft_printf.h
 SRC = ft_printf.c ft_vprintf.c
 OBJ = $(SRC:.c=.o)
-SRCBONUS = ft_lstnew.c ft_lstadd_front.c ft_lstsize.c ft_lstlast.c ft_lstadd_back.c ft_lstdelone.c ft_lstclear.c ft_lstiter.c ft_lstmap.c
+SRCBONUS = ft_vprintf.c
 OBJBONUS = $(SRCBONUS:.c=.o)
 CFLAGS = -Wall -Wextra -Werror
 
@@ -23,11 +25,15 @@ else
 	OBJ_FILES = $(OBJ)
 endif
 
-all: $(NAME)
+all: libfta $(NAME)
 
-$(NAME): $(OBJ_FILES)
-	@ar rvc $(NAME) $(OBJ_FILES)
-	ranlib $(NAME)
+$(NAME): $(LIB)/$(LIB).a $(OBJ_FILES) $(HEADER)
+	@ar -x $(LIB)/$(LIB).a
+	@ar rvc $(NAME) *.o
+	@ranlib $(NAME)
+
+libfta:
+	@cd $(LIB) && make
 
 %.o: %.c
 	@gcc -c $(CFLAGS) -o $@ $<

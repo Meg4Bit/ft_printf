@@ -11,9 +11,11 @@
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+#include <stdio.h>
 
 int		ft_vprintf(const char *format, va_list tmp)
 {
+	vprintf(format, tmp);
 	ft_putnbr_fd(100, 0);
 	return (0);
 }
