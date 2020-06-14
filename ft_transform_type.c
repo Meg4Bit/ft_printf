@@ -60,6 +60,11 @@ static int	apply_flag(char **line, int width, char **percent)
 
 	if (!(farr = (int *)ft_calloc(5, sizeof(int))))
 		return (0);
+	if (width < 0)
+	{
+		width *= -1;
+		farr[0] = 1;
+	}
 	if (ft_strchr(percent[0], '-'))
 		farr[0] = 1;
 	if (ft_strchr(percent[0], '0'))

@@ -12,12 +12,12 @@
 
 #include "ft_printf.h"
 
-int		ft_width(va_list tmp, char *width)
+int		ft_width(va_list *tmp, char *width)
 {
 	int		i;
 
 	if (*width == '*')
-		i = va_arg(tmp, int);
+		i = va_arg(*tmp, int);
 	else
 		i = ft_atoi(width);
 	return (i);

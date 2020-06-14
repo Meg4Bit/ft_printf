@@ -12,12 +12,12 @@
 
 #include "ft_printf.h"
 
-char	*ft_pointer(va_list tmp)
+char	*ft_pointer(va_list *tmp)
 {
 	unsigned long long	ull;
 	char				*line;
 
-	ull = va_arg(tmp, unsigned long long);
+	ull = va_arg(*tmp, unsigned long long);
 	line = ft_ptoa(ull);
 	return (line);
 }

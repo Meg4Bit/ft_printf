@@ -12,12 +12,12 @@
 
 #include "ft_printf.h"
 
-char	*ft_string(va_list tmp)
+char	*ft_string(va_list *tmp)
 {
 	char *str;
 	char *line;
 
-	str = va_arg(tmp, char *);
+	str = va_arg(*tmp, char *);
 	if (!str)
 		line = ft_strdup("(null)");
 	else

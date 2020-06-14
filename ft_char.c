@@ -12,12 +12,12 @@
 
 #include "ft_printf.h"
 
-char	*ft_char(va_list tmp)
+char	*ft_char(va_list *tmp)
 {
 	char c;
 	char *line;
 
-	c = va_arg(tmp, int);
+	c = va_arg(*tmp, int);
 	if (!(line = (char *)ft_calloc(2, sizeof(char))))
 		return (NULL);
 	*line = c;

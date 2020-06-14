@@ -12,12 +12,15 @@
 
 #include "ft_printf.h"
 
-char	*ft_unsigned(va_list tmp)
+char	*ft_unsigned(va_list *tmp, int acc)
 {
 	unsigned	i;
 	char		*line;
 
-	i = va_arg(tmp, unsigned);
-	line = ft_utoa(i);
+	i = va_arg(*tmp, unsigned);
+	if (acc == 0 && i == 0)
+		line = (char *)ft_calloc(1, sizeof(char));
+	else
+		line = ft_utoa(i);
 	return (line);
 }
