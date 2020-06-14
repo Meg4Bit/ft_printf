@@ -6,7 +6,7 @@
 /*   By: ametapod <pe4enko111@rambler.ru>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/09 14:36:44 by ametapod          #+#    #+#             */
-/*   Updated: 2020/06/09 14:36:44 by ametapod         ###   ########.fr       */
+/*   Updated: 2020/06/14 16:34:22 by student          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ int			ft_vprintf(const char *format, va_list tmp)
 		return (ft_free_mem(line));
 	free(line);
 	line = ptr;
-	ft_putstr_fd(line, 0);
+	ft_putstr_fd(line, 1);
 	len = ft_strlen(line);
 	free(line);
 	return (len);
