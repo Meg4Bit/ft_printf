@@ -6,7 +6,7 @@
 /*   By: ametapod <pe4enko111@rambler.ru>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/13 16:51:59 by ametapod          #+#    #+#             */
-/*   Updated: 2020/06/13 16:51:59 by ametapod         ###   ########.fr       */
+/*   Updated: 2020/06/14 15:48:36 by student          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ static int	apply_width(char **line, int width, int *farr, char **percent)
 	if (len <= 0)
 		return (1);
 	if (!(tmp = ft_calloc(len + 1, sizeof(char))))
-			return (0);
+		return (0);
 	ft_memset(tmp, ' ', len);
 	if (!(join = join_width(line, tmp, farr, percent)))
 		return (ft_free_mem(tmp));
