@@ -66,5 +66,11 @@ void			ft_lstclear(t_list **lst, void (*del)(void*));
 void			ft_lstiter(t_list *lst, void (*f)(void *));
 t_list			*ft_lstmap(t_list *lst, void *(*f)(void *),\
 													void (*del)(void *));
+int				ft_free_mem(void *content);
+int				ft_free_arr(void **content, int len);
+char			*ft_utoa(unsigned n);
+char			*ft_xtoa(unsigned n);
+char			*ft_ptoa(unsigned long long n);
+char			*ft_strmap(char const *s, char (*f)(int));
 
 #endif
