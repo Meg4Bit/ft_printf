@@ -18,7 +18,7 @@ int		ft_printf(const char *format, ...)
 	int		res;
 
 	va_start(tmp, format);
-	res = ft_vprintf(format, tmp);
+	res = ft_vprintf(format, tmp, 0);
 	va_end(tmp);
 	return (res);
 }

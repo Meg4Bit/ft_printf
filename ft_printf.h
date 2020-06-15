@@ -17,7 +17,7 @@
 # include <stdarg.h>
 
 int		ft_printf(const char *format, ...);
-int		ft_vprintf(const char *format, va_list tmp);
+int		ft_vprintf(const char *format, va_list tmp, int len);
 int		check_flag(const char **format, char **percent);
 int		check_width(const char **format, char **percent);
 int		check_acc(const char **format, char **percent);
@@ -35,5 +35,6 @@ int		ft_width(va_list *tmp, char *width);
 int		ft_acc(va_list *tmp, char *acc);
 int		ft_add_zeros(int acc, char **line, int skip);
 int		ft_transform_type(char **type, int width, int acc, char **percent);
+int		ft_fchar(char **type, int width, char **percent, char **line);
 
 #endif

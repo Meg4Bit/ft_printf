@@ -15,7 +15,7 @@ LIB = libft
 HEADER = ft_printf.h
 SRC = ft_printf.c ft_vprintf.c check_flag.c check_width.c check_acc.c check_type.c\
 		ft_print_type.c ft_big_sixteen.c ft_char.c ft_int.c ft_percent.c ft_pointer.c ft_sixteen.c ft_string.c ft_unsigned.c\
-		ft_width.c ft_acc.c ft_transform_type.c ft_add_zeros.c
+		ft_width.c ft_acc.c ft_transform_type.c ft_add_zeros.c ft_fchar.c
 OBJ = $(SRC:.c=.o)
 SRCBONUS = ft_vprintf.c
 OBJBONUS = $(SRCBONUS:.c=.o)
