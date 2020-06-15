@@ -6,7 +6,7 @@
 /*   By: ametapod <pe4enko111@rambler.ru>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/09 14:36:44 by ametapod          #+#    #+#             */
-/*   Updated: 2020/06/15 13:42:40 by student          ###   ########.fr       */
+/*   Updated: 2020/06/15 16:43:47 by student          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,14 +85,16 @@ int			ft_vprintf(const char *format, va_list tmp)
 	char	*line;
 	char	*ptr;
 	int		len;
+	va_list list;
 
+	va_copy(list, tmp);
 	if (!format)
 		return (0);
 	if (!(line = (char *)malloc(sizeof(char) * 1)))
 		return (-1);
 	*line = 0;
 	while (ft_strchr(format, '%'))
-		if (write_line(&format, (va_list *)(&tmp), &line) != 1)
+		if (write_line(&format, &list, &line) != 1)
 			return (ft_free_mem(line));
 	if (!(ptr = ft_strjoin(line, format)))
 		return (ft_free_mem(line));
@@ -101,5 +103,6 @@ int			ft_vprintf(const char *format, va_list tmp)
 	ft_putstr_fd(line, 1);
 	len = ft_strlen(line);
 	free(line);
+	va_end(list);
 	return (len);
 }
