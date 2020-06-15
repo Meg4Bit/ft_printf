@@ -23,8 +23,6 @@ static int	submit_percent(char **percent, va_list *tmp, char **line)
 	acc = ft_acc(tmp, percent[2]);
 	if (!(type = ft_print_type(percent[3], tmp, acc)))
 		return (0);
-	if (acc < 0)
-		acc = 0;
 	if (!(ft_transform_type(&type, width, acc, percent)))
 		return (ft_free_mem(type));
 	if (!(join = ft_strjoin(*line, type)))

@@ -78,6 +78,8 @@ static int	apply_acc(char **line, int acc, char *type)
 {
 	char	*tmp;
 
+	if (acc < 0)
+		return (1);
 	if (*type == 's')
 	{
 		if (!(tmp = ft_substr(*line, 0, acc)))
