@@ -51,7 +51,7 @@ int			check_flag(const char **format, char **percent)
 	char *flag;
 	char *begin;
 
-	flag = "-0";
+	flag = "-0+ #";
 	begin = flag;
 	while (*flag)
 	{

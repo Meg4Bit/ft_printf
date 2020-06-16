@@ -72,5 +72,8 @@ char			*ft_utoa(unsigned n);
 char			*ft_xtoa(unsigned n);
 char			*ft_ptoa(unsigned long long n);
 char			*ft_strmap(char const *s, char (*f)(int));
+char			*ft_llitoa(long long n);
+char			*ft_llutoa(unsigned long long n);
+char			*ft_llxtoa(unsigned long long n);
 
 #endif

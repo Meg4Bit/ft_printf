@@ -56,8 +56,12 @@ static int	apply_width(char **line, int width, int *farr, char **percent)
 
 static int	apply_flag(char **line, int width, char **percent)
 {
-	int	*farr;
+	int		*farr;
+	int		i;
+	char	*flag;
 
+	flag = "-+ #0";
+	i = -1;
 	if (!(farr = (int *)ft_calloc(5, sizeof(int))))
 		return (0);
 	if (width < 0)
@@ -65,29 +69,22 @@ static int	apply_flag(char **line, int width, char **percent)
 		width *= -1;
 		farr[0] = 1;
 	}
-	if (ft_strchr(percent[0], '-'))
-		farr[0] = 1;
-	if (ft_strchr(percent[0], '0'))
-		farr[4] = 1;
+	while (flag[++i])
+		if (ft_strchr(percent[0], flag[i]))
+			farr[i] = 1;
+	if (apply_flag_bonus(line, farr, percent[3]) != 1)
+		return (ft_free_mem(farr));
 	if (apply_width(line, width, farr, percent) != 1)
 		return (ft_free_mem(farr));
+	free(farr);
 	return (1);
 }
 
 static int	apply_acc(char **line, int acc, char *type)
 {
-	char	*tmp;
-
 	if (acc < 0)
 		return (1);
-	if (*type == 's')
-	{
-		if (!(tmp = ft_substr(*line, 0, acc)))
-			return (0);
-		free(*line);
-		*line = tmp;
-	}
-	else if (*type == 'd' || *type == 'i' || *type == 'u' || *type == 'x'\
+	if (*type == 'd' || *type == 'i' || *type == 'u' || *type == 'x'\
 				|| *type == 'X')
 	{
 		if ((ft_add_zeros(acc, line, 1)) != 1)

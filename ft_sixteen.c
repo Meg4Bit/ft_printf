@@ -12,15 +12,25 @@
 
 #include "ft_printf.h"
 
-char	*ft_sixteen(va_list *tmp, int acc)
+char	*ft_sixteen(va_list *tmp, int acc, char *type)
 {
-	unsigned	u;
 	char		*line;
 
-	u = va_arg(*tmp, unsigned);
-	if (acc == 0 && u == 0)
-		line = (char *)ft_calloc(1, sizeof(char));
+	if (ft_strnstr(type, "ll", 2))
+		line = ft_llxtoa(va_arg(*tmp, unsigned long long));
+	else if (ft_strnstr(type, "hh", 2))
+		line = ft_xtoa((unsigned char)va_arg(*tmp, unsigned));
+	else if (ft_strnstr(type, "l", 1) && !ft_strnstr(type, "ll", 2))
+		line = ft_llxtoa(va_arg(*tmp, unsigned long));
+	else if (ft_strnstr(type, "h", 1) && !ft_strnstr(type, "hh", 2))
+		line = ft_xtoa((unsigned short)va_arg(*tmp, unsigned));
 	else
-		line = ft_xtoa(u);
+		line = ft_xtoa(va_arg(*tmp, unsigned));
+	if (line)
+		if (acc == 0 && *line == '0')
+		{
+			free(line);
+			line = (char *)ft_calloc(1, sizeof(char));
+		}
 	return (line);
 }

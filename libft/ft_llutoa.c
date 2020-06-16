@@ -1,36 +1,47 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strnstr.c                                       :+:      :+:    :+:   */
+/*   ft_llutoa.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ametapod <pe4enko111@rambler.ru>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/05/08 01:13:38 by ametapod          #+#    #+#             */
-/*   Updated: 2020/05/08 15:17:16 by student          ###   ########.fr       */
+/*   Created: 2020/06/16 23:46:50 by ametapod          #+#    #+#             */
+/*   Updated: 2020/06/16 23:46:50 by ametapod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strnstr(const char *big, const char *little, size_t len)
+static int	llutoa_len(unsigned long long n)
 {
-	size_t	i;
-	size_t	pos;
-	size_t	little_len;
-	char	*occ;
+	int		len;
 
-	occ = (char *)big;
-	if (!(little_len = ft_strlen(little)))
-		return (occ);
-	pos = 0;
-	while (occ[pos] && pos < len)
+	len = 0;
+	if (n <= 0)
+		len++;
+	while (n)
 	{
-		i = 0;
-		while (little[i] && occ[pos + i] == little[i] && (pos + i) < len)
-			i++;
-		if (i == little_len)
-			return (occ + pos);
-		pos++;
+		n /= 10;
+		len++;
 	}
-	return (0);
+	return (len);
+}
+
+char		*ft_llutoa(unsigned long long n)
+{
+	char	*str;
+	int		len;
+
+	len = llutoa_len(n);
+	str = (char *)malloc(sizeof(char) * (len + 1));
+	if (!str)
+		return (0);
+	str[0] = '0';
+	str[len--] = 0;
+	while (n)
+	{
+		str[len--] = (n % 10) + '0';
+		n /= 10;
+	}
+	return (str);
 }

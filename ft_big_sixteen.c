@@ -12,13 +12,13 @@
 
 #include "ft_printf.h"
 
-char	*ft_big_sixteen(va_list *tmp, int acc)
+char	*ft_big_sixteen(va_list *tmp, int acc, char *type)
 {
 	char	*line;
 	int		i;
 
 	i = 0;
-	if ((line = ft_sixteen(tmp, acc)))
+	if ((line = ft_sixteen(tmp, acc, type)))
 	{
 		while (line[i])
 		{
