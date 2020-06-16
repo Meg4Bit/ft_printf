@@ -23,18 +23,17 @@ char	*ft_string(va_list *tmp, int acc)
 	i = 0;
 	str = va_arg(*tmp, char *);
 	if (!str)
-		line = ft_strdup("(null)");
+		str = "(null)";
+	if (acc >= 0)
+	{
+		while (len < acc && str[len])
+			len++;
+		if (!(line = (char *)ft_calloc(len + 1, sizeof(char))))
+			return (NULL);
+		while (i < len)
+			line[i++] = *str++;
+	}
 	else
-		if (acc > 0)
-		{
-			while (len < acc && str[len])
-				len++;
-			if (!(line = (char *)ft_calloc(len + 1, sizeof(char))))
-				return (NULL);
-			while (i < len)
-				line[i++] = *str++;
-		}
-		else
-			line = ft_strdup(str);
+		line = ft_strdup(str);
 	return (line);
 }
