@@ -27,7 +27,7 @@ int		ft_add_zeros(int acc, char **line, int skip)
 	len = acc - ft_strlen(*line);
 	if (!(tmp = (char *)ft_calloc(acc + 1, sizeof(char))))
 		return (0);
-	if (**line == '-' || **line == '+')
+	if (**line == '-' || **line == '+' || **line == ' ')
 		tmp[i++] = **line;
 	j = i;
 	while (len--)

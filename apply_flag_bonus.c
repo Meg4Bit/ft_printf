@@ -31,7 +31,7 @@ static int	apply_decimal(char **line, int *farr)
 			*line = join;
 		}
 	}
-	else if (!farr[1] && farr[2])
+	else if (!farr[1] && farr[2] && **line != '-')
 	{
 		if (!(join = ft_strjoin(" ", *line)))
 			return (0);
@@ -48,7 +48,8 @@ static int	apply_hashtag(char **line, int *farr, char *type)
 
 	if (!farr[3])
 		return (1);
-	if (ft_strchr(type, 'x') || ft_strchr(type, 'X'))
+	if ((ft_strchr(type, 'x') || ft_strchr(type, 'X')) && **line &&\
+			**line != '0')
 	{
 		x = "0x";
 		if (ft_strchr(type, 'X'))

@@ -26,7 +26,7 @@ int		check_type(const char **format, char **percent);
 char	*ft_print_type(char *type, va_list *tmp, int acc);
 char	*ft_char(va_list *tmp);
 char	*ft_string(va_list *tmp, int acc);
-char	*ft_pointer(va_list *tmp);
+char	*ft_pointer(va_list *tmp, int acc);
 char	*ft_int(va_list *tmp, int acc, char *type);
 char	*ft_unsigned(va_list *tmp, int acc, char *type);
 char	*ft_sixteen(va_list *tmp, int acc, char *type);

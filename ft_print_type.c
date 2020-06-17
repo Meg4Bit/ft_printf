@@ -21,7 +21,7 @@ char	*ft_print_type(char *type, va_list *tmp, int acc)
 	else if (ft_strchr(type, 's'))
 		line = ft_string(tmp, acc);
 	else if (ft_strchr(type, 'p'))
-		line = ft_pointer(tmp);
+		line = ft_pointer(tmp, acc);
 	else if (ft_strchr(type, 'i') || ft_strchr(type, 'd'))
 		line = ft_int(tmp, acc, type);
 	else if (ft_strchr(type, 'u'))
