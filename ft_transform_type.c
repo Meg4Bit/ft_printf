@@ -17,7 +17,7 @@ static char	*join_width(char **line, char *tmp, int *farr, char **percent)
 	char	*type;
 	char	*dup;
 
-	type = "diuxX";
+	type = "pdiuxX";
 	if (farr[0])
 		return (ft_strjoin(*line, tmp));
 	if (farr[4])
@@ -84,8 +84,8 @@ static int	apply_acc(char **line, int acc, char *type)
 {
 	if (acc < 0)
 		return (1);
-	if (*type == 'd' || *type == 'i' || *type == 'u' || *type == 'x'\
-				|| *type == 'X')
+	if (ft_strchr(type, 'd') || ft_strchr(type, 'i') || ft_strchr(type, 'u')\
+			|| ft_strchr(type, 'x') || ft_strchr(type, 'X'))
 	{
 		if ((ft_add_zeros(acc, line, 1)) != 1)
 			return (0);
