@@ -97,9 +97,10 @@ static int	apply_hashtag(char **line, int *farr, char *type)
 
 	if (!farr[3])
 		return (delete_zeros(line, type));
-	if ((ft_strchr(type, 'x') || ft_strchr(type, 'X')) &&\
-			ft_revstrchr(*line, '0'))
+	if ((ft_strchr(type, 'x') || ft_strchr(type, 'X')))
 	{
+		if (!(ft_revstrchr(*line, '0')))
+			return (1);
 		x = "0x";
 		if (ft_strchr(type, 'X'))
 			x = "0X";
