@@ -18,8 +18,6 @@ SRC = ft_printf.c ft_vprintf.c check_flag.c check_width.c check_acc.c check_type
 		ft_width.c ft_acc.c ft_transform_type.c ft_add_zeros.c ft_fchar.c\
 		apply_flag_bonus.c ft_float_bonus.c ft_efloat_bonus.c ft_gfloat_bonus.c ftoe_bonus.c ft_n_bonus.c
 OBJ = $(SRC:.c=.o)
-SRCBONUS = ft_vprintf.c
-OBJBONUS = $(SRCBONUS:.c=.o)
 CFLAGS = -Wall -Wextra -Werror
 
 ifdef WITH_BONUS
@@ -42,7 +40,7 @@ libfta:
 	@gcc -c $(CFLAGS) -o $@ $<
 
 bonus:
-	$(MAKE) WITH_BONUS=1 all
+	$(MAKE) all
 
 clean:
 	/bin/rm -f *.o
