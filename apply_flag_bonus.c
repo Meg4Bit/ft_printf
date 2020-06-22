@@ -6,7 +6,7 @@
 /*   By: ametapod <pe4enko111@rambler.ru>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/16 14:47:56 by ametapod          #+#    #+#             */
-/*   Updated: 2020/06/16 14:47:56 by ametapod         ###   ########.fr       */
+/*   Updated: 2020/06/22 16:44:03 by student          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,10 @@ static int	apply_point(char **line)
 		free(tmp);
 	}
 	else
+	{
 		if (!(join = ft_strjoin(*line, ".")))
 			return (0);
+	}
 	free(*line);
 	*line = join;
 	return (1);
@@ -110,8 +112,10 @@ static int	apply_hashtag(char **line, int *farr, char *type)
 		*line = join;
 	}
 	else
+	{
 		if ((apply_point(line) != 1))
 			return (0);
+	}
 	return (1);
 }
 
@@ -129,11 +133,11 @@ int			apply_flag_bonus(char **line, int *farr, char *type)
 	}
 	while (*decimal)
 		if (ft_strchr(type, *decimal++))
-			if(apply_decimal(line, farr) != 1)
+			if (apply_decimal(line, farr) != 1)
 				return (0);
 	while (*hashtag)
 		if (ft_strchr(type, *hashtag++))
-			if(apply_hashtag(line, farr, type) != 1)
+			if (apply_hashtag(line, farr, type) != 1)
 				return (0);
 	return (1);
 }

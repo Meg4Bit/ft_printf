@@ -6,7 +6,7 @@
 /*   By: ametapod <pe4enko111@rambler.ru>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/12 12:55:58 by ametapod          #+#    #+#             */
-/*   Updated: 2020/06/12 12:55:58 by ametapod         ###   ########.fr       */
+/*   Updated: 2020/06/22 16:40:49 by student          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static int	check_mod(const char **format, char **percent, int iter, char *type)
 		if (**format == *type)
 		{
 			if (!(tmp = (char *)ft_calloc(2, sizeof(char))))
-			return (0);
+				return (0);
 			*tmp = *type;
 			if (!(join = ft_strjoin(*percent, tmp)))
 				return (ft_free_mem(tmp));
