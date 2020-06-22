@@ -75,5 +75,7 @@ char			*ft_llitoa(long long n);
 char			*ft_llutoa(unsigned long long n);
 char			*ft_llxtoa(unsigned long long n);
 char			*ft_revstrchr(const char *s, int c);
+double			ft_pow(int n, unsigned int pow);
+char			*ft_dtoa(double n, int acc);
 
 #endif

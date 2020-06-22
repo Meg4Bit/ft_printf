@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-static int	submit_percent(char **percent, va_list *tmp, char **line)
+static int	submit_percent(char **percent, va_list *tmp, char **line, int *len)
 {
 	int		width;
 	int		acc;
@@ -21,26 +21,27 @@ static int	submit_percent(char **percent, va_list *tmp, char **line)
 
 	width = ft_width(tmp, percent[1]);
 	acc = ft_acc(tmp, percent[2]);
-	if (!(type = ft_print_type(percent[3], tmp, acc)))
+	if (!(type = ft_print_type(percent[3], tmp, acc, *len + ft_strlen(*line))))
 		return (-1);
 	if (percent[3][0] == 'c' && *type == 0)
-		return (ft_fchar(&type, width, percent, line));
-	if (!(ft_transform_type(&type, width, acc, percent)))
-		return (ft_free_mem(type));
+		return (*len += ft_fchar(&type, width, percent, line));
+	if (!(ft_strchr(percent[3], 'n')))
+		if (!(ft_transform_type(&type, width, acc, percent)))
+			return (ft_free_mem(type));
 	if (!(join = ft_strjoin(*line, type)))
 		return (ft_free_mem(type));
 	free(*line);
 	free(type);
 	*line = join;
 	ft_strlen(*line);
-	return (0);
+	return (1);
 }
 
-static int	write_percent(const char **format, va_list *tmp, char **line)
+static int	write_percent(const char **format, va_list *tmp, char **line,\
+																int *length)
 {
 	char	**percent;
 	int		len;
-	int		fchar;
 
 	len = -1;
 	if (!(percent = (char **)malloc(sizeof(char *) * 4)))
@@ -57,17 +58,16 @@ static int	write_percent(const char **format, va_list *tmp, char **line)
 		return (ft_free_arr((void **)percent, 4));
 	if (check_type(format, percent + 3) != 1)
 		return (ft_free_arr((void **)percent, 4));
-	if ((fchar = submit_percent(percent, tmp, line)) < 0)
+	if ((submit_percent(percent, tmp, line, length)) < 0)
 		return (ft_free_arr((void **)percent, 4));
 	ft_free_arr((void **)percent, 4);
-	return (fchar);
+	return (1);
 }
 
-static int	write_line(const char **format, va_list *tmp, char **line)
+static int	write_line(const char **format, va_list *tmp, char **line, int *len)
 {
 	char	*sub;
 	char	*join;
-	int		fchar;
 
 	if (!(sub = ft_substr(*format, 0, ft_strchr(*format, '%') - *format)))
 		return (-1);
@@ -77,29 +77,27 @@ static int	write_line(const char **format, va_list *tmp, char **line)
 	free(sub);
 	*line = join;
 	*format = ft_strchr(*format, '%');
-	if ((fchar = write_percent(format, tmp, line)) < 0)
+	if ((write_percent(format, tmp, line, len)) < 0)
 		return (-1);
-	return (fchar);
+	return (1);
 }
 
-int			ft_vprintf(const char *format, va_list tmp, int len)
+int			ft_vprintf(const char *format, va_list tmp)
 {
 	char	*line;
 	char	*ptr;
-	int		fchar;
-	va_list list;
+	int		len;
+	va_list	list;
 
 	va_copy(list, tmp);
 	if (!format)
 		return (0);
+	len = 0;
 	if (!(line = (char *)ft_calloc(1, sizeof(char))))
 		return (-1);
 	while (ft_strchr(format, '%'))
-	{
-		if ((fchar = write_line(&format, &list, &line)) < 0)
+		if (write_line(&format, &list, &line, &len) < 0)
 			return (ft_free_mem(line));
-		len += fchar;
-	}
 	if (!(ptr = ft_strjoin(line, format)))
 		return (ft_free_mem(line));
 	free(line);

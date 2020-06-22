@@ -1,24 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_pow.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ametapod <pe4enko111@rambler.ru>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/06/09 12:24:10 by ametapod          #+#    #+#             */
-/*   Updated: 2020/06/15 16:17:53 by student          ###   ########.fr       */
+/*   Created: 2020/06/18 14:57:48 by ametapod          #+#    #+#             */
+/*   Updated: 2020/06/18 14:57:48 by ametapod         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int		ft_printf(const char *format, ...)
+double	ft_pow(int n, unsigned int pow)
 {
-	va_list	tmp;
-	int		res;
+	unsigned int	i;
+	double			num;
 
-	va_start(tmp, format);
-	res = ft_vprintf(format, tmp);
-	va_end(tmp);
-	return (res);
+	i = 0;
+	num = 1;
+	while (i++ < pow)
+		num *= n;
+	return (num);
 }

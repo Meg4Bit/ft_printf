@@ -12,7 +12,24 @@
 
 #include "ft_printf.h"
 
-char	*ft_print_type(char *type, va_list *tmp, int acc)
+static char	*bonus_type(char *type, va_list *tmp, int acc, int len)
+{
+	char	*line;
+
+	if (*type == 'f')
+		line = ft_float(tmp, acc);
+	else if (*type == 'e')
+		line = ft_efloat(tmp, acc);
+	else if (*type == 'g')
+		line = ft_gfloat(tmp, acc);
+	else if (ft_strchr(type, 'n'))
+		line = ft_n(tmp, type, len);
+	else
+		line = (char *)ft_calloc(1, sizeof(char));
+	return (line);
+}
+
+char		*ft_print_type(char *type, va_list *tmp, int acc, int len)
 {
 	char	*line;
 
@@ -33,6 +50,6 @@ char	*ft_print_type(char *type, va_list *tmp, int acc)
 	else if (ft_strchr(type, '%'))
 		line = ft_percent();
 	else
-		line = (char *)ft_calloc(1, sizeof(char));
+		line = bonus_type(type, tmp, acc, len);
 	return (line);
 }
