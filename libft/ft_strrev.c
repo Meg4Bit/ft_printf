@@ -29,7 +29,6 @@ char	*ft_strrev(char *str)
 		str[j] = tmp;
 		i++;
 		j--;
-
 	}
 	return (str);
 }
