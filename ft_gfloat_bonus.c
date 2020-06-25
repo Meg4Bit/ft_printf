@@ -30,7 +30,7 @@ static char	*gtoa(double n, int acc)
 	char	*line;
 	int		len;
 
-	len = dtoa_len(n);
+	len = n == 0 ? 1 : dtoa_len(n);
 	acc = acc ? acc : 1;
 	if ((acc - len >= 0 && (n >= 0.0001 || n <= -0.0001)) || n == 0)
 		line = ft_dtoa(n, acc - len);
