@@ -23,7 +23,8 @@ static int	delete_zeros(char **line, char *type)
 	while (*(point + 1))
 	{
 		tmp = point + 1;
-		if (!(tmp = ft_revstrchr(tmp, '0')) || *tmp == 'e')
+		if (!(tmp = ft_revstrchr(tmp, '0')) || (*tmp == 'e'\
+												&& *(point + 1) != 'e'))
 		{
 			point += *point != '.' ? 1 : 0;
 			*point = 0;

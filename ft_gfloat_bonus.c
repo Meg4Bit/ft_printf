@@ -17,11 +17,18 @@ static int	dtoa_len(double n)
 	int		len;
 
 	len = 0;
-	while (n >= 1 || n <= -1)
-	{
-		n /= 10;
-		len++;
-	}
+	if (n >= 1 || n <= -1)
+		while (n >= 1 || n <= -1)
+		{
+			n /= 10;
+			len++;
+		}
+	else
+		while (n * 10 < 1 && n * 10 > -1)
+		{
+			n *= 10;
+			len--;
+		}
 	return (len);
 }
 
