@@ -6,7 +6,7 @@
 /*   By: ametapod <pe4enko111@rambler.ru>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/17 20:57:29 by ametapod          #+#    #+#             */
-/*   Updated: 2020/06/17 20:57:29 by ametapod         ###   ########.fr       */
+/*   Updated: 2020/06/25 12:53:33 by student          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static int	dtoa_len(double n)
 	return (len);
 }
 
-static int  ft_round(char *str)
+static int	ft_round(char *str)
 {
 	int i;
 
@@ -41,7 +41,7 @@ static int  ft_round(char *str)
 		{
 			str[i] = '0';
 			if (str[i + 1] == '.')
-			str[i + 2]++;
+				str[i + 2]++;
 			else if (!str[i + 1] || str[i + 1] == '-')
 			{
 				if (str[i + 1] == '-')
