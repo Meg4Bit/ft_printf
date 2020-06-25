@@ -47,6 +47,7 @@ char	*ft_float(va_list *tmp, int acc);
 char	*ft_efloat(va_list *tmp, int acc);
 char	*ft_gfloat(va_list *tmp, int acc);
 char	*ft_n(va_list *tmp, char *type, int len);
+char	*ft_dtoa(double n, int acc);
 char	*ftoe(double n, int acc);
 
 #endif

@@ -32,7 +32,7 @@ static char	*gtoa(double n, int acc)
 
 	len = dtoa_len(n);
 	acc = acc ? acc : 1;
-	if (acc - len >= 0)
+	if (acc - len >= 0 && n >= 0.0001)
 		line = ft_dtoa(n, acc - len);
 	else
 		line = ftoe(n, acc - 1);

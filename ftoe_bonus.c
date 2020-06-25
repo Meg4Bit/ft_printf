@@ -12,6 +12,16 @@
 
 #include "ft_printf.h"
 
+static int	apply_rounding(char **line, int *len, double n, int acc)
+{
+	free(*line);
+	n /= 10;
+	(*len)++;
+	if (!(*line = ft_dtoa(n, acc)))
+		return (0);
+	return (1);
+}
+
 static int	add_e(char **line, int len)
 {
 	char *join;
@@ -47,11 +57,11 @@ char		*ftoe(double n, int acc)
 	int		len;
 
 	len = 0;
-	if (n < 1 && n > -1)
+	if (n < 1 && n > -1 && n != 0)
 		while (n < 1 && n > -1)
 		{
 			n *= 10;
-			len++;
+			len--;
 		}
 	else
 		while (n >= 10 || n <= -10)
@@ -61,6 +71,9 @@ char		*ftoe(double n, int acc)
 		}
 	if (!(line = ft_dtoa(n, acc)))
 		return (0);
+	if (ft_strnstr(line, "10", 3))
+		if (!(apply_rounding(&line, &len, n, acc)))
+			return (0);
 	if (add_e(&line, len) != 1)
 		return (0);
 	return (line);

@@ -14,22 +14,22 @@
 
 static int	delete_zeros(char **line, char *type)
 {
-	const char	*point;
-	const char	*tmp;
-	char		*sub;
+	char	*point;
+	char	*tmp;
+	char	*sub;
 
-	if (!(ft_strchr(type, 'g')))
-		return (1);
-	if (!(point = ft_strchr(*line, '.')))
+	if (!(ft_strchr(type, 'g')) || !(point = ft_strchr(*line, '.')))
 		return (1);
 	while (*(point + 1))
 	{
 		tmp = point + 1;
-		if (!(tmp = ft_revstrchr(tmp, '0')))
+		if (!(tmp = ft_revstrchr(tmp, '0')) || *tmp == 'e')
 		{
-			if (*point != '.')
-				point++;
-			if (!(sub = ft_substr(*line, 0, point - *line)))
+			point += *point != '.' ? 1 : 0;
+			*point = 0;
+			if (tmp && (!(sub = ft_strjoin(*line, tmp))))
+				return (0);
+			if (!tmp && !(sub = ft_strdup(*line)))
 				return (0);
 			free(*line);
 			*line = sub;
