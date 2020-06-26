@@ -72,16 +72,29 @@ static void	add_int(char *str, double *n, int len, int minus)
 
 static void	add_float(char *str, double *n, int acc, int minus)
 {
-	int i;
+	int			i;
+	long long	ll;
 
 	i = 0;
 	str[i++] = '.';
-	while (i < acc)
+	if (acc < 20)
 	{
-		*n *= 10;
-		str[i++] = (int)(*n) * minus + '0';
-		*n = *n - (int)(*n);
+		*n *= ft_pow(10, acc - 1);
+		ll = *n;
+		*n -= ll;
+		while (acc-- > 1)
+		{
+			str[acc] = (ll % 10) * minus + '0';
+			ll /= 10;
+		}
 	}
+	else
+		while (i < acc)
+		{
+			*n *= 10;
+			str[i++] = (int)(*n) * minus + '0';
+			*n = *n - (int)(*n);
+		}
 }
 
 char		*ft_dtoa(double n, int acc)
